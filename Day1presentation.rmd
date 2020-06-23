@@ -1,0 +1,172 @@
+---
+title: "Virtual Lab Session Day 1"
+author: "Srijit Mukherjee"
+date: "23 June 2020"
+output:
+  beamer_presentation: default
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, size = "tiny")
+knitr::opts_chunk$set(fig.align = "center", fig.height = 3, fig.width = 3)
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$size != "normalsize", paste0("\n \\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+})
+```
+
+## Types of Data Variables in R
+
+
+- Quantitative
+
+    - Continuous
+    - Discrete
+      
+- Qualitative
+
+    - Nominal
+    - Ordinal
+
+## Datasets in R
+
+If you type the following command, you will get to know all the data sets in R.
+
+```{r, echo = TRUE, comment = ''}
+data()
+```
+
+## Handling Data in R
+
+Let's take the mtcars data set in R. Let's see the top of the data matrix.
+
+```{r, echo = TRUE, comment = ''}
+data = mtcars
+head(data, n = 3)
+```
+
+## Handling Data in R
+
+Let's see the bottom of the data matrix.
+
+```{r, echo = TRUE, comment = ''}
+tail(data, n = 3)
+```
+
+## Handling Data in R
+
+Let's see a concise summary of the data matrix.
+
+```{r, echo = TRUE, comment = ''}
+str(data)
+```
+
+## Handling Data in R
+
+```{r, echo = TRUE, comment = ''}
+class(data)
+class(data$mpg)
+dim(data)
+names(data)
+```
+
+## Continuous Data
+
+Exploratory Data Analysis
+
+```{r, echo = TRUE, comment = ''}
+mean(data)
+mean(data$mpg)
+var(data$mpg)
+sd(data$mpg)
+```
+
+
+## Continuous Data
+
+Exploratory Data Analysis
+
+```{r, echo = TRUE, comment = ''}
+min(data$mpg)
+max(data$mpg)
+median(data$mpg)
+```
+
+## Continuous Data
+
+Exploratory Data Analysis
+
+```{r, echo = TRUE, comment = ''}
+quantile(data$mpg)
+range(data$mpg)
+summary(data$mpg)
+```
+
+## Continuous Data
+
+Exploratory Data Analysis
+
+```{r, echo = TRUE, comment = ''}
+summary(data)
+```
+
+##Continuous Data
+
+Exploratory Data Analysis
+
+```{r, echo = TRUE, comment = ''}
+hist(data$mpg, xlab = "MPG", probability = TRUE, , main = "Histogram")
+```
+
+
+##Continuous Data
+
+Exploratory Data Analysis
+
+```{r, echo = TRUE, comment = ''}
+plot(data$mpg, data$wt, xlab = "MPG", ylab = "Weight") 
+```
+
+##Continuous Data
+
+Exploratory Data Analysis
+
+```{r, echo = TRUE, comment = ''}
+plot(data$mpg, data$hp, xlab = "MPG", ylab = "Horsepower")
+```
+
+##Continuous Data
+
+Exploratory Data Analysis
+
+```{r, echo = TRUE, comment = ''}
+plot(data$hp, data$wt, xlab = "Horsepower", ylab = "Weight")
+```
+
+## The sapply() function
+
+This function helps to apply a function to a subset of the data frame. 
+
+Let's say, you want to compute the mean of the data frame.
+
+```{r, echo = TRUE, comment = ''}
+sapply(data, mean)
+```
+
+## The Descriptive Statistics package and function
+
+```{r, echo = TRUE, comment = '', eval=TRUE}
+#install.packages("pastecs")
+library("pastecs")
+```
+
+## The Descriptive Statistics package and function
+
+```{r, echo = TRUE, comment = ''}
+round(stat.desc(data), 2)
+```
+
+## The Box Plot
+
